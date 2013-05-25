@@ -1,3 +1,3 @@
 " By Daniel Hahler
-au BufRead,BufNewFile *.tracwiki if &ft == '' | setfiletype tracwiki | endif
+au BufRead,BufNewFile *.tracwiki,*.trac if &ft == '' | setfiletype tracwiki | endif
 
