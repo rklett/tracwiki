@@ -40,7 +40,8 @@ endif
 syn region  tracVerb        start="{\{3}" end="}\{3}"
 syn region  tracVerb        start="`" end="`"
 
-syn region  tracHead        start="^=\{1,5} " end="=\{1,5} *\(#[^ ]\+\)\?"
+"syn region  tracHead        start="^=\{1,5} " end="=\{1,5} *\(#[^ ]\+\)\?"
+syn region  tracHead        start="^=\{1,5} " end="\(\w$\|\(#\.\+$\?\)\)"
 syn match   tracLine        "^----$"
 
 syn region tracItalic       start=+''+ end=+''+ containedin=tracHead contains=tracEscape
