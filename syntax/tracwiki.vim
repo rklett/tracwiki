@@ -41,6 +41,7 @@ syn region  tracVerb        start="{\{3}" end="}\{3}"
 syn region  tracVerb        start="`" end="`"
 
 syn region  tracHead        start="^=\{1,5} " end="=\{1,5} *\(#[^ ]\+\)\?"
+syn region  tracHeadNum     start="^#\{1,5} " end="#\{1,5} *\(=[^ ]\+\)\?"
 syn match   tracLine        "^----$"
 
 syn region tracItalic       start=+''+ end=+''+ containedin=tracHead contains=tracEscape
@@ -89,6 +90,7 @@ syn match   tracEscape      "!\<\([A-Z][a-z]\+\)\{2,}\>\([#/]\<\([A-Z][a-z]\+\)\
   
 hi def link tracLinks        Function
 hi def link tracHead         Type
+hi def link tracHeadNum      tracHead
 hi def link tracLine         Type
 hi def link tracVerb         String
 hi def      tracBold          term=bold cterm=bold gui=bold
