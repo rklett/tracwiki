@@ -46,6 +46,7 @@ syn match   tracLine        "^----$"
 
 syn region tracItalic       start=+''+ end=+''+ containedin=tracHead contains=tracEscape
 syn region tracBold         start=+'''+ end=+'''+ containedin=tracHead contains=tracEscape
+syn region tracBold2        start=+**+ end=+**+ containedin=tracHead contains=tracEscape
 syn region tracBoldItalic   start=+'''''+ end=+'''''+ containedin=tracHead contains=tracEscape
 syn region tracUnderline    start=+__+hs=s+2 end=+__+he=e-2 containedin=tracHead contains=tracEscape
 syn region tracStrike       start=+\~\~+ end=+\~\~+ containedin=tracHead contains=tracEscape
@@ -53,7 +54,7 @@ syn region tracSuper        start=+\^+ end=+\^+ containedin=tracHead contains=tr
 syn region tracSub          start=+,,+ end=+,,+ containedin=tracHead contains=tracEscape
 
 " This may need to be fine tuned.
-syn match tracEscape        "![^ ]\+\( \|$\)" contained
+syn match  tracEscape       "![^ ]\+\( \|$\)" contained
 syn region tracEscape       start=+!\[+ end=+\]+
 
 syn region  tracLink        start=+\[+ end=+\]+
@@ -63,51 +64,52 @@ syn match   tracPageName    "\<\(wiki:\)\?\([A-Z][a-z]\+\)\{2,}\>\([#/]\<\([A-Z]
 " Trac links
 "
 " Tickets
-syn match   tracLinks      "#\d\+"
+syn match   tracLinks       "#\d\+"
 " Reports
-syn match   tracLinks     "{\d\+}"
+syn match   tracLinks       "{\d\+}"
 " Change sets. Make sure defined after tracLink otherwise syntax will break.
-syn match   tracLinks     "\<r\d\+"
+syn match   tracLinks       "\<r\d\+"
 " Revision log. Make sure defined after tracLink otherwise syntax will break.
-syn match   tracLinks     "\<r\d\+:\d\+"
-syn match   tracLinks     "\[\d\+:\d\+\(/[^]]\+\)*\]"
+syn match   tracLinks       "\<r\d\+:\d\+"
+syn match   tracLinks       "\[\d\+:\d\+\(/[^]]\+\)*\]"
 " General form, type:id (where id represents the number, name or path of the
 " item)
-syn match   tracLinks     `\<\(wiki\|source\|attachment\|milestone\|diff\|log\|report\|changeset\|comment\|ticket\):\(".\+"\|'.\+'\|\(\S\+\)\+\)`
+syn match   tracLinks       `\<\(wiki\|source\|attachment\|milestone\|diff\|log\|report\|changeset\|comment\|ticket\):\(".\+"\|'.\+'\|\(\S\+\)\+\)`
 
 " Change sets. Make sure defined after tracLink and before tracLinks otherwise
 " syntax will break.
 syn region  tracMacro       start=+\[\[+ end=+\]\]+
 
 syn match   tracListItem    "^\s\+[*-]\s\+"
-syn match   tracDefList     "^\s.\+::" 
+syn match   tracDefList     "^\s.\+::\(\s\+\|\n\)"
 
 syn region  tracDisussion   start="^>" end="$"
 
 syn match   tracEscape      "!\<\([A-Z][a-z]\+\)\{2,}\>\([#/]\<\([A-Z][a-z]\+\)\{2,}\>\)*"
 
 " The default highlighting.
-  
-hi def link tracLinks        Function
-hi def link tracHead         Type
-hi def link tracHeadNum      tracHead
-hi def link tracLine         Type
-hi def link tracVerb         String
-hi def      tracBold          term=bold cterm=bold gui=bold
-hi def      tracItalic        term=italic cterm=italic gui=italic
-hi def      tracUnderline     term=underline cterm=underline gui=underline
-hi def      tracBoldItalic    term=bold,italic cterm=bold,italic gui=bold,italic
-hi def link tracEscape       Special
-hi def link tracStrike       Statement
-hi def link tracSuper        Statement
-hi def link tracSub          Statement
-hi def link tracLink         Function
-hi def link tracRawLink      Function
-hi def link tracPageName     Function
-hi def link tracListItem     Operator
-hi def link tracDefList      tracBoldItalic
-hi def link tracMacro        PreProc
-hi def link tracDisussion    Comment
+
+hi def link tracLinks       Function
+hi def link tracHead        Type
+hi def link tracHeadNum     tracHead
+hi def link tracLine        Type
+hi def link tracVerb        String
+hi def      tracBold        term=bold cterm=bold gui=bold
+hi def link tracBold2       tracBold
+hi def      tracItalic      term=italic cterm=italic gui=italic
+hi def      tracUnderline   term=underline cterm=underline gui=underline
+hi def      tracBoldItalic  term=bold,italic cterm=bold,italic gui=bold,italic
+hi def link tracEscape      Special
+hi def link tracStrike      Statement
+hi def link tracSuper       Statement
+hi def link tracSub         Statement
+hi def link tracLink        Function
+hi def link tracRawLink     Function
+hi def link tracPageName    Function
+hi def link tracListItem    Operator
+hi def link tracDefList     tracBoldItalic
+hi def link tracMacro       PreProc
+hi def link tracDisussion   Comment
 
 hi def link tracCurlyError  Error
 
